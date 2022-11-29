@@ -4,7 +4,6 @@ import EnumDropdown from "./components/EnumDropdown";
 import EnumList from "./components/EnumList";
 import { Alert } from "./components/Alert";
 import "./ui/SearchableEnumerationSelector.css";
-import LoadingSelector from "./components/LoadingSelector";
 import { EditableValue, ActionValue, ValueStatus } from "mendix";
 import { EnumOption } from "typings/general";
 
@@ -90,11 +89,6 @@ export function SearchableEnumerationSelector({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mxFilter, filterDelay, isSearchable, fullOptions]);
 
-    if (
-        enumAttribute.status === ValueStatus.Available &&
-        placeholder.status === ValueStatus.Available &&
-        maxMenuHeight.status === ValueStatus.Available
-    ) {
         return (
             <div id={id} className="ses">
                 {selectStyle === "dropdown" && (
@@ -143,16 +137,4 @@ export function SearchableEnumerationSelector({
                 {enumAttribute.validation && <Alert>{enumAttribute.validation}</Alert>}
             </div>
         );
-    } else {
-        return (
-            <LoadingSelector
-                name={name}
-                tabIndex={tabIndex}
-                placeholder={placeholder.value}
-                isClearable={isClearable}
-                clearIcon={clearIcon}
-                dropdownIcon={dropdownIcon}
-            />
-        );
-    }
 }
