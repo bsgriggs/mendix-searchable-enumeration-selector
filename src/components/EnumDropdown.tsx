@@ -2,10 +2,10 @@ import React, { createElement, useState, useRef, ReactElement } from "react";
 import { DynamicValue, WebIcon } from "mendix";
 import ClearIcon from "./icons/ClearIcon";
 import DropdownIcon from "./icons/DropdownIcon";
-import OptionsMenu, { Position } from "./OptionsMenu";
+import OptionsMenu from "./OptionsMenu";
 import { OptionsStyleEnum } from "typings/SearchableEnumerationSelectorProps";
 import useOnClickOutside from "../custom hooks/useOnClickOutside";
-import usePositionUpdate, {mapPosition} from "../custom hooks/usePositionUpdate";
+import usePositionUpdate, {mapPosition, Position} from "../custom hooks/usePositionUpdate";
 import {EnumOption} from "typings/general";
 
 interface EnumDropdownProps {

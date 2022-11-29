@@ -1,5 +1,11 @@
 import { RefObject, useEffect, useState } from "react";
-import { Position } from "src/components/OptionsMenu";
+
+export interface Position {
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+}
 
 export const mapPosition = (ref: HTMLDivElement | null): Position => {
     return ref !== null

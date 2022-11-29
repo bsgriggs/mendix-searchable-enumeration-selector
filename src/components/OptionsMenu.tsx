@@ -2,13 +2,7 @@ import React, { createElement, ReactElement, useEffect, useRef, useState } from 
 import Option, { focusModeEnum } from "./Option";
 import { OptionsStyleEnum, SelectStyleEnum } from "typings/SearchableEnumerationSelectorProps";
 import { EnumOption } from "typings/general";
-
-export interface Position {
-    x: number;
-    y: number;
-    w: number;
-    h: number;
-}
+import {Position} from "../custom hooks/usePositionUpdate";
 
 interface OptionsMenuProps {
     options: EnumOption[];
