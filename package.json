@@ -1,0 +1,35 @@
+{
+  "name": "searchableenumerationselector",
+  "widgetName": "SearchableEnumerationSelector",
+  "version": "1.0.0",
+  "description": "Mendix enumeration selector with a searchbar and a clear button",
+  "copyright": "Benjamin Griggs",
+  "author": "Benjamin Griggs",
+  "engines": {
+    "node": ">=16"
+  },
+  "license": "MIT",
+  "config": {
+    "projectPath": "../../",
+    "mendixHost": "http://localhost:8080",
+    "developmentPort": 3000
+  },
+  "packagePath": "mendix",
+  "scripts": {
+    "start": "pluggable-widgets-tools start:server",
+    "dev": "pluggable-widgets-tools start:web",
+    "build": "pluggable-widgets-tools build:web",
+    "lint": "pluggable-widgets-tools lint",
+    "lint:fix": "pluggable-widgets-tools lint:fix",
+    "prerelease": "npm run lint",
+    "release": "pluggable-widgets-tools release:web"
+  },
+  "devDependencies": {
+    "@mendix/pluggable-widgets-tools": "^9.0.6",
+    "@types/big.js": "^6.0.2",
+    "@types/react": "~17.0.1",
+    "@types/react-dom": "~17.0.1"
+  },
+  "dependencies": {
+  }
+}

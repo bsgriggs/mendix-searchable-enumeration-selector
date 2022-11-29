@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="mendix.searchableenumerationselector.SearchableEnumerationSelector" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
+        supportedPlatform="Web"
+        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>Searchable Enumeration Selector</name>
+    <description>Mendix enumeration selector with a searchbar and a clear button</description>
+    <helpUrl>https://github.com/bsgriggs/mendix-searchable-enumeration-selector/blob/master/README.md</helpUrl>
+    <icon/>
+    <properties>
+        <propertyGroup caption="General">
+            <propertyGroup caption="General">
+                <systemProperty key="Label" />
+                <property key="placeholder" type="textTemplate">
+                    <caption>Placeholder</caption>
+                    <description></description>
+                    <translations>
+                        <translation lang="en_US">Search ...</translation>
+                    </translations>
+                </property>
+                <systemProperty key="Editability"></systemProperty>
+                <systemProperty key="Visibility"></systemProperty>
+            </propertyGroup>
+            <propertyGroup caption="Customization">
+                <property key="isSearchable" type="boolean" defaultValue="true">
+                    <caption>Searchable?</caption>
+                    <description>When true, the user will be able to search with a textbox</description>
+                </property>
+                <property key="isClearable" type="boolean" defaultValue="true">
+                    <caption>Clearable?</caption>
+                    <description>When true, the search textbox will have either an 'X' icon or the Clear Icon</description>
+                </property>
+                <property key="filterDelay" type="integer" defaultValue="300" required="true">
+                    <caption>Filter Delay</caption>
+                    <description>How many milliseconds after the user has stopped typing to apply the filter.</description>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+        <propertyGroup caption="Style">
+            <property key="selectStyle" type="enumeration" defaultValue="dropdown">
+                <caption>Select Style</caption>
+                <description></description>
+                <enumerationValues>
+                    <enumerationValue key="dropdown">Dropdown</enumerationValue>
+                    <enumerationValue key="list">List on Page</enumerationValue>
+                </enumerationValues>
+            </property>
+            <property key="optionsStyle" type="enumeration" defaultValue="cell">
+                <caption>Option Style</caption>
+                <description></description>
+                <enumerationValues>
+                    <enumerationValue key="cell">Cell</enumerationValue>
+                    <enumerationValue key="checkbox">Checkbox</enumerationValue>
+                </enumerationValues>
+            </property>
+            <property key="maxMenuHeight" type="expression" defaultValue="'15em'">
+                <caption>Max Menu Height</caption>
+                <description>CSS Height (i.e. 200px, 20em ... ) for the select menu (default = 15em)</description>
+                <returnType type="String" />
+            </property>
+            <property key="noResultsText" type="textTemplate" >
+                <caption>No Results Text</caption>
+                <description>Message shown if no results were found</description>
+                <translations>
+                    <translation lang="en_US">No results found</translation>
+                </translations>
+            </property>
+            <property key="clearIcon" type="icon" required="false">
+                <caption>Clear Icon</caption>
+                <description></description>
+            </property>
+            <property key="dropdownIcon" type="icon" required="false">
+                <caption>Dropdown Icon</caption>
+                <description></description>
+            </property>
+        </propertyGroup>
+        <propertyGroup caption="Data Source">
+            <propertyGroup caption="General">
+                <property key="enumAttribute" type="attribute" required="true" >
+                    <caption>Enum Attribute</caption>
+                    <description>The enum options that will be displayed</description>
+                    <attributeTypes>
+                        <attributeType name="Enum" />
+                    </attributeTypes>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Actions">
+                <property key="onChange" type="action">
+                    <caption>On Change</caption>
+                    <description></description>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+    </properties>
+</widget>
