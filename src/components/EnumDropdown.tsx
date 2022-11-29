@@ -7,6 +7,7 @@ import { OptionsStyleEnum } from "typings/SearchableEnumerationSelectorProps";
 import useOnClickOutside from "../custom hooks/useOnClickOutside";
 import usePositionUpdate, {mapPosition, Position} from "../custom hooks/usePositionUpdate";
 import {EnumOption} from "typings/general";
+import {focusSearchInput} from "../utils/general";
 
 interface EnumDropdownProps {
     name: string;
@@ -26,16 +27,6 @@ interface EnumDropdownProps {
     maxHeight?: string;
     optionsStyle: OptionsStyleEnum;
 }
-
-const focusSearchInput = (input: React.RefObject<HTMLInputElement>, delay: number): void => {
-    if (input.current !== null) {
-        if (delay !== undefined){
-            setTimeout(()=> input.current?.focus(), delay);
-        } else {
-            input.current.focus();
-        }
-    }
-};
 
 const EnumDropdown = ({
     isClearable,

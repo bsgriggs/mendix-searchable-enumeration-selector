@@ -69,9 +69,7 @@ const Option = ({
             }}
             ref={hoverRef}
         >
-            {optionsStyle === "checkbox" && (
-                <input type={"checkbox"} checked={isSelected} disabled={!isSelectable}></input>
-            )}
+            {optionsStyle === "radio" && <input type={"radio"} checked={isSelected} disabled={!isSelectable} />}
             <span className="mx-text">{option.caption}</span>
         </div>
     );

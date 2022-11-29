@@ -7,7 +7,7 @@ import { ActionValue, DynamicValue, EditableValue, WebIcon } from "mendix";
 
 export type SelectStyleEnum = "dropdown" | "list";
 
-export type OptionsStyleEnum = "cell" | "checkbox";
+export type OptionsStyleEnum = "cell" | "radio";
 
 export interface SearchableEnumerationSelectorContainerProps {
     name: string;

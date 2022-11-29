@@ -50,7 +50,7 @@
                 <description></description>
                 <enumerationValues>
                     <enumerationValue key="cell">Cell</enumerationValue>
-                    <enumerationValue key="checkbox">Checkbox</enumerationValue>
+                    <enumerationValue key="radio">Radio Buttons</enumerationValue>
                 </enumerationValues>
             </property>
             <property key="maxMenuHeight" type="expression" defaultValue="'15em'">
