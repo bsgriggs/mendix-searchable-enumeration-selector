@@ -2,7 +2,7 @@ import React, { createElement, ReactElement, useEffect, useRef, useState } from 
 import Option, { focusModeEnum } from "./Option";
 import { OptionsStyleEnum, SelectStyleEnum } from "typings/SearchableEnumerationSelectorProps";
 import { EnumOption } from "typings/general";
-import {Position} from "../custom hooks/usePositionUpdate";
+import { Position } from "../custom hooks/usePositionUpdate";
 
 interface OptionsMenuProps {
     options: EnumOption[];
@@ -17,7 +17,11 @@ interface OptionsMenuProps {
     isReadyOnly: boolean;
 }
 
-const OptionsMenuStyle = (selectStyle: SelectStyleEnum, position: Position | undefined, maxHeight: string | undefined): React.CSSProperties => {
+const OptionsMenuStyle = (
+    selectStyle: SelectStyleEnum,
+    position: Position | undefined,
+    maxHeight: string | undefined
+): React.CSSProperties => {
     if (selectStyle === "dropdown" && position !== undefined) {
         const contentCloseToBottom = position.y > window.innerHeight * 0.7;
         return {
@@ -57,12 +61,10 @@ const OptionsMenu = ({
         setFocusMode(focusModeEnum.arrow);
     }, [currentFocus]);
 
-
-
     return (
         <div
             className={`ses-${selectStyle}`}
-            style={OptionsMenuStyle(selectStyle,position,maxHeight)}
+            style={OptionsMenuStyle(selectStyle, position, maxHeight)}
             onMouseEnter={() => setFocusMode(focusModeEnum.hover)}
         >
             {options !== undefined && options.length > 0 && (

@@ -1,12 +1,11 @@
 import { ReactElement, createElement, useState, useEffect } from "react";
-import { ValueStatus } from "mendix";
 import { SearchableEnumerationSelectorContainerProps } from "../typings/SearchableEnumerationSelectorProps";
 import EnumDropdown from "./components/EnumDropdown";
 import EnumList from "./components/EnumList";
 import { Alert } from "./components/Alert";
 import "./ui/SearchableEnumerationSelector.css";
 import LoadingSelector from "./components/LoadingSelector";
-import { EditableValue, ActionValue } from "mendix";
+import { EditableValue, ActionValue, ValueStatus } from "mendix";
 import { EnumOption } from "typings/general";
 
 const callMxAction = (action?: ActionValue): void => {
@@ -60,7 +59,7 @@ export function SearchableEnumerationSelector({
     const [fullOptions, setFullOptions] = useState<EnumOption[]>([]);
 
     useEffect(() => {
-        if (enumAttribute.universe != undefined) {
+        if (enumAttribute.universe !== undefined) {
             const captions = enumAttribute.universe.map(name => enumAttribute.formatter.format(name));
             const newFullOptions = enumAttribute.universe.map((value, index) => {
                 return {
@@ -71,6 +70,7 @@ export function SearchableEnumerationSelector({
             setFullOptions(newFullOptions);
             setOptions(filterOptions(mxFilter, newFullOptions));
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [enumAttribute.universe]);
 
     useEffect(() => {
@@ -87,6 +87,7 @@ export function SearchableEnumerationSelector({
 
             return () => clearTimeout(delayDebounceFn);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mxFilter, filterDelay, isSearchable, fullOptions]);
 
     if (

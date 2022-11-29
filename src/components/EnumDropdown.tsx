@@ -5,9 +5,11 @@ import DropdownIcon from "./icons/DropdownIcon";
 import OptionsMenu from "./OptionsMenu";
 import { OptionsStyleEnum } from "typings/SearchableEnumerationSelectorProps";
 import useOnClickOutside from "../custom hooks/useOnClickOutside";
-import usePositionUpdate, {mapPosition, Position} from "../custom hooks/usePositionUpdate";
-import {EnumOption} from "typings/general";
-import {focusSearchInput} from "../utils/general";
+import usePositionUpdate, { mapPosition, Position } from "../custom hooks/usePositionUpdate";
+import { EnumOption } from "typings/general";
+import focusSearchInput from "../utils/focusSearchInput";
+import handleKeyNavigation from "../utils/handleKeyNavigation";
+import handleClear from "../utils/handleClear";
 
 interface EnumDropdownProps {
     name: string;
@@ -52,9 +54,9 @@ const EnumDropdown = ({
     const sesRef = useRef<HTMLDivElement>(null);
     const [position, setPosition] = useState<Position>({ x: 0, y: 0, w: 0, h: 0 });
 
-    usePositionUpdate(sesRef, (newPosition => {
-        setPosition(newPosition)
-    }));
+    usePositionUpdate(sesRef, newPosition => {
+        setPosition(newPosition);
+    });
 
     useOnClickOutside(sesRef, () => {
         // handle click outside
@@ -84,47 +86,6 @@ const EnumDropdown = ({
         }
     };
 
-    const handleInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>): void => {
-        const keyPressed = event.key;
-        if (keyPressed === "ArrowUp" || keyPressed === "ArrowLeft") {
-            if (focusedEnumIndex === -1) {
-                setFocusedEnumIndex(0);
-            } else if (focusedEnumIndex > 0) {
-                setFocusedEnumIndex(focusedEnumIndex - 1);
-            } else {
-                setFocusedEnumIndex(options.length - 1);
-            }
-            setShowMenu(true);
-        } else if (keyPressed === "ArrowDown" || keyPressed === "ArrowRight") {
-            if (focusedEnumIndex === -1) {
-                setFocusedEnumIndex(0);
-            } else if (focusedEnumIndex < options.length - 1) {
-                setFocusedEnumIndex(focusedEnumIndex + 1);
-            } else {
-                setFocusedEnumIndex(0);
-            }
-            setShowMenu(true);
-        } else if (keyPressed === "Enter") {
-            if (focusedEnumIndex > -1) {
-                onSelectHandler(options[focusedEnumIndex]?.name, true);
-            }
-        } else if (keyPressed === "Escape" || keyPressed === "Tab") {
-            setFocusedEnumIndex(-1);
-            setShowMenu(false);
-        }
-    };
-
-    const handleClear = (event: React.MouseEvent<HTMLDivElement>): void => {
-        event.stopPropagation();
-        setShowMenu(true);
-        setMxFilter("");
-        setFocusedEnumIndex(-1);
-        if (mxFilter.trim() === "") {
-            onSelectHandler(undefined, false);
-        }
-        focusSearchInput(searchInput, 300);
-    };
-
     return (
         <div
             className={showMenu ? "form-control active" : "form-control"}
@@ -136,7 +97,9 @@ const EnumDropdown = ({
                     focusSearchInput(searchInput, 300);
                 }
             }}
-            onKeyDown={handleInputKeyDown}
+            onKeyDown={event =>
+                handleKeyNavigation(event, focusedEnumIndex, setFocusedEnumIndex, options, onSelectHandler, setShowMenu)
+            }
             ref={sesRef}
         >
             {currentValue === undefined && isReadOnly === false && isSearchable && (
@@ -156,10 +119,26 @@ const EnumDropdown = ({
                 ></input>
             )}
             {currentValue === undefined && isSearchable === false && <span className="ses-text">{placeholder}</span>}
-            {currentValue !== undefined && <span className="ses-text">{options.find(option => option.name === currentValue)?.caption}</span>}
+            {currentValue !== undefined && (
+                <span className="ses-text">{options.find(option => option.name === currentValue)?.caption}</span>
+            )}
             <div className="ses-icon-row">
                 {isClearable && isReadOnly === false && (
-                    <ClearIcon onClick={handleClear} title={"Clear"} mxIconOverride={clearIcon} />
+                    <ClearIcon
+                        onClick={event =>
+                            handleClear(
+                                event,
+                                mxFilter,
+                                setMxFilter,
+                                setFocusedEnumIndex,
+                                onSelectHandler,
+                                searchInput,
+                                setShowMenu
+                            )
+                        }
+                        title={"Clear"}
+                        mxIconOverride={clearIcon}
+                    />
                 )}
                 <DropdownIcon mxIconOverride={dropdownIcon} />
             </div>

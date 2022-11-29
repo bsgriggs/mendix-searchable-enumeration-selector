@@ -73,7 +73,7 @@ export function preview(props: SearchableEnumerationSelectorPreviewProps): React
                         onSelect={() => {}}
                         focusMode={focusModeEnum.hover}
                         optionsStyle={props.optionsStyle}
-                        option={{caption: props.enumAttribute + " 1", name: "enum1"}}
+                        option={{ caption: props.enumAttribute + " 1", name: "enum1" }}
                     />
                     <Option
                         index={2}
@@ -84,7 +84,7 @@ export function preview(props: SearchableEnumerationSelectorPreviewProps): React
                         onSelect={() => {}}
                         focusMode={focusModeEnum.hover}
                         optionsStyle={props.optionsStyle}
-                        option={{caption: props.enumAttribute + " 2", name: "enum2"}}
+                        option={{ caption: props.enumAttribute + " 2", name: "enum2" }}
                     />
                 </div>
             </div>

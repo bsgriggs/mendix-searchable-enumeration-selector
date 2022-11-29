@@ -29,7 +29,7 @@ export default function usePositionUpdate(
 ): void {
     const [resizeObserver, setResizeObserver] = useState<ResizeObserver | null>(null);
 
-    const resizeHandler = () => {
+    const resizeHandler = (): void => {
         handler(mapPosition(ref.current));
     };
 

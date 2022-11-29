@@ -3,7 +3,9 @@ import { DynamicValue, WebIcon } from "mendix";
 import OptionsMenu from "./OptionsMenu";
 import { OptionsStyleEnum } from "typings/SearchableEnumerationSelectorProps";
 import ClearIcon from "./icons/ClearIcon";
-import {EnumOption} from "typings/general";
+import { EnumOption } from "typings/general";
+import handleKeyNavigation from "../utils/handleKeyNavigation";
+import handleClear from "../utils/handleClear";
 
 interface EnumListProps {
     name: string;
@@ -21,16 +23,6 @@ interface EnumListProps {
     isReadOnly: boolean;
     optionsStyle: OptionsStyleEnum;
 }
-
-const focusSearchInput = (input: React.RefObject<HTMLInputElement>, delay: number): void => {
-    if (input.current !== null) {
-        if (delay !== undefined){
-            setTimeout(()=> input.current?.focus(), delay);
-        } else {
-            input.current.focus();
-        }
-    }
-};
 
 const EnumList = ({
     isClearable,
@@ -67,47 +59,17 @@ const EnumList = ({
         setFocusedEnumIndex(0);
     };
 
-    const handleInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>): void => {
-        const keyPressed = event.key;
-        if (keyPressed === "ArrowUp" || keyPressed === "ArrowLeft") {
-            if (focusedEnumIndex === -1) {
-                setFocusedEnumIndex(0);
-            } else if (focusedEnumIndex > 0) {
-                setFocusedEnumIndex(focusedEnumIndex - 1);
-            } else {
-                setFocusedEnumIndex(options.length - 1);
-            }
-        } else if (keyPressed === "ArrowDown" || keyPressed === "ArrowRight") {
-            if (focusedEnumIndex === -1) {
-                setFocusedEnumIndex(0);
-            } else if (focusedEnumIndex < options.length - 1) {
-                setFocusedEnumIndex(focusedEnumIndex + 1);
-            } else {
-                setFocusedEnumIndex(0);
-            }
-        } else if (keyPressed === "Enter") {
-            if (focusedEnumIndex > -1) {
-                onSelectHandler(options[focusedEnumIndex]?.name);
-            }
-        } else if (keyPressed === "Escape" || keyPressed === "Tab") {
-            setFocusedEnumIndex(-1);
-        }
-    };
-
-    const handleClear = (event: React.MouseEvent<HTMLDivElement>): void => {
-        event.stopPropagation();
-        setMxFilter("");
-        setFocusedEnumIndex(-1);
-        if (mxFilter.trim() === "") {
-            onSelectHandler(undefined);
-        }
-       focusSearchInput(sesRef, 300);
-    };
-
     return (
         <React.Fragment>
             {isSearchable && (
-                <div className={"form-control"} tabIndex={tabIndex || 0} onKeyDown={handleInputKeyDown} ref={sesRef}>
+                <div
+                    className={"form-control"}
+                    tabIndex={tabIndex || 0}
+                    onKeyDown={event =>
+                        handleKeyNavigation(event, focusedEnumIndex, setFocusedEnumIndex, options, onSelectHandler)
+                    }
+                    ref={sesRef}
+                >
                     <input
                         name={name}
                         placeholder={placeholder}
@@ -119,7 +81,20 @@ const EnumList = ({
                     ></input>
 
                     {isClearable && isReadOnly === false && (
-                        <ClearIcon onClick={handleClear} title={"Clear"} mxIconOverride={clearIcon} />
+                        <ClearIcon
+                            onClick={event =>
+                                handleClear(
+                                    event,
+                                    mxFilter,
+                                    setMxFilter,
+                                    setFocusedEnumIndex,
+                                    onSelectHandler,
+                                    searchInput
+                                )
+                            }
+                            title={"Clear"}
+                            mxIconOverride={clearIcon}
+                        />
                     )}
                 </div>
             )}
@@ -137,7 +112,13 @@ const EnumList = ({
                     options={options}
                 />
                 {isSearchable === false && isClearable && isReadOnly === false && (
-                    <ClearIcon onClick={handleClear} title={"Clear"} mxIconOverride={clearIcon} />
+                    <ClearIcon
+                        onClick={event =>
+                            handleClear(event, mxFilter, setMxFilter, setFocusedEnumIndex, onSelectHandler, searchInput)
+                        }
+                        title={"Clear"}
+                        mxIconOverride={clearIcon}
+                    />
                 )}
             </div>
         </React.Fragment>
