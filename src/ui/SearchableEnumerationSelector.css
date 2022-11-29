@@ -29,6 +29,10 @@ Place your custom CSS here
     width: 30%;
 }
 
+.ses input:read-only {
+    cursor: pointer;
+}
+
 .ses .ses-icon-row {
     display: flex;
     align-items: center;

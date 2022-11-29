@@ -7,7 +7,7 @@ export default function handleClear(
     setMxFilter: (newFilter: string) => void,
     setFocusedEnumIndex: (newIndex: number) => void,
     onSelectHandler: (selectedEnum: string | undefined, closeMenu?: boolean) => void,
-    searchInput: RefObject<HTMLInputElement>,
+    focusInput: RefObject<HTMLInputElement>,
     setShowMenu?: (newShowMenu: boolean) => void
 ): void {
     event.stopPropagation();
@@ -19,5 +19,5 @@ export default function handleClear(
     if (mxFilter.trim() === "") {
         onSelectHandler(undefined, false);
     }
-    focusSearchInput(searchInput, 300);
+    focusSearchInput(focusInput, 300);
 }

@@ -22,9 +22,9 @@ interface EnumDropdownProps {
     mxFilter: string;
     setMxFilter: (newFilter: string) => void;
     isClearable: boolean;
+    isSearchable: boolean;
     clearIcon?: DynamicValue<WebIcon>;
     dropdownIcon?: DynamicValue<WebIcon>;
-    isSearchable: boolean;
     isReadOnly: boolean;
     maxHeight?: string;
     optionsStyle: OptionsStyleEnum;
@@ -102,26 +102,15 @@ const EnumDropdown = ({
             }
             ref={sesRef}
         >
-            {currentValue === undefined && isReadOnly === false && isSearchable && (
-                <input
-                    name={name}
-                    placeholder={placeholder}
-                    type="text"
-                    onChange={handleInputChange}
-                    readOnly={isReadOnly}
-                    value={mxFilter}
-                    ref={searchInput}
-                    onClick={(event: React.MouseEvent<HTMLInputElement>) => {
-                        if (showMenu) {
-                            event.stopPropagation();
-                        }
-                    }}
-                ></input>
-            )}
-            {currentValue === undefined && isSearchable === false && <span className="ses-text">{placeholder}</span>}
-            {currentValue !== undefined && (
-                <span className="ses-text">{options.find(option => option.name === currentValue)?.caption}</span>
-            )}
+            <input
+                name={name}
+                placeholder={placeholder}
+                type="text"
+                onChange={handleInputChange}
+                readOnly={isReadOnly || currentValue !== undefined || !isSearchable}
+                value={currentValue || mxFilter}
+                ref={searchInput}
+            ></input>
             <div className="ses-icon-row">
                 {isClearable && isReadOnly === false && (
                     <ClearIcon
