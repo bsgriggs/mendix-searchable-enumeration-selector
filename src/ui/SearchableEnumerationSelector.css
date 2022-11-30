@@ -1,0 +1,145 @@
+/*
+Place your custom CSS here
+*/
+.ses {
+    width: 100%;
+}
+
+.ses .form-control {
+    width: inherit;
+    padding: 0;
+    align-items: center;
+    cursor: pointer;
+    flex-wrap: wrap;
+    gap: 2px;
+}
+
+.ses .active.form-control {
+    border-color: #264ae5;
+    outline: 0;
+    background-color: #fff;
+    box-shadow: none;
+}
+
+.ses input {
+    border: none;
+    padding: 8px 0 8px 8px;
+    flex-grow: 1;
+    border-radius: 4px;
+    width: 30%;
+}
+
+.ses input:read-only {
+    cursor: pointer;
+}
+
+.ses .ses-icon-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: auto;
+}
+
+.ses .ses-badge-row{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 4px 4px 0 4px;
+    width: 100%;
+    gap: 4px;
+}
+
+.ses .glyphicon, .ses img{
+    padding: 8px 4px;
+    color: #6f6f6f;
+}
+
+.ses .ses-selectable-list.form-control {
+    display: inline-block;
+}
+
+.ses .ses-text {
+    padding: 8px 0 8px 8px;
+    flex-grow: 1;
+}
+
+.ses .ses-text p {
+    line-height: 1;
+    margin: 0;
+}
+
+.ses .ses-badge {
+    background-color: #e7e7e7;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding: 2px;
+}
+
+.ses .ses-badge .glyphicon, .ses .ses-badge img{
+    padding: 4px;
+}
+
+.ses .ses-badge span {
+    padding-left: 4px;
+    font-size: smaller;
+}
+
+.ses .ses-comma,
+.ses-extra {
+    font-size: small;
+    padding: 2px;
+}
+
+.ses .ses-dropdown {
+    position: fixed;
+    z-index: 302;
+    border: 1px solid #d7d7d7;
+    border-radius: 4px;
+    background-color: #fff;
+    overflow-y: auto;
+    padding: 0.25em;
+}
+
+.ses .ses-option {
+    cursor: pointer;
+    padding: 0.5em;
+    border-radius: 4px;
+    display: flex;
+}
+
+/* styling for html mode w/ checkboxes */
+.ses .ses-option input {
+    max-width: 16px;
+}
+.ses .ses-option p {
+    width: fit-content;
+    line-height: 1;
+    margin: 0;
+}
+.ses .ses-badge p {
+    line-height: 1;
+    margin: 0;
+}
+
+.ses .ses-infooption {
+    padding: 0.5em;
+    color: #6f6f6f;
+}
+
+.ses .ses-option.disabled {
+    color: #6f6f6f;
+    cursor: not-allowed;
+}
+
+.ses .ses-option.focused:not(.disabled) {
+    background-color: #d7d7d7;
+}
+.ses .ses-option.selected {
+    background-color: #e7e7e7;
+}
+
+.ses .ses-option input[type="checkbox"], input[type="radio"] {
+    margin-right: 0.5em !important;
+    flex-shrink: 0 !important;
+}
