@@ -1,24 +1,30 @@
-## SearchableEnumerationSelector
-[Mendix enumeration selector with a searchbar and a clear button]
+## Searchable Enumeration Selector
+Mendix enumeration selector with a search bar and a clear button
+
+Need to select a reference? Check out the Searchable Reference Selector!
+- Marketplace https://marketplace.mendix.com/link/component/116917
+- GitHub https://github.com/bsgriggs/mendix9-searchable-reference-selector
 
 ## Features
-[feature highlights]
+- Display all possible enumeration values 
+- Display in either a dropdown or list on page
+- Can show the options either as a cell or with radio buttons
+- Can customize icons, text, filter delay, and more!
 
 ## Usage
-[step by step instructions]
+1. Add the widget inside a data view. 
+2. Inside the Data Source tab, select the Enum Attribute you want to have the user select.
+3. Run the project and play with the remaining setting to see what you like!
 
 ## Demo project
-[link to sandbox]
+https://widgettesting105-sandbox.mxapps.io/p/searchable-reference-selector
 
 ## Issues, suggestions and feature requests
-[link to GitHub issues]
+https://github.com/bsgriggs/mendix9-searchable-reference-selector/issues
+
+This widget is open source. Feel free to clone the GitHub repository, make whatever changes you need, and submit a pull request! 
+**Requires Node v14 and NPM v6 - if you already have a different version of Node / NPM, then download [NVM](https://github.com/nvm-sh/nvm) to switch between versions **
 
 ## Development and contribution
 
-1. Install NPM package dependencies by using: `npm install`. If you use NPM v7.x.x, which can be checked by executing `npm -v`, execute: `npm install --legacy-peer-deps`.
-1. Run `npm start` to watch for code changes. On every change:
-    - the widget will be bundled;
-    - the bundle will be included in a `dist` folder in the root directory of the project;
-    - the bundle will be included in the `deployment` and `widgets` folder of the Mendix test project.
-
-[specify contribution]
+Benjamin Griggs
