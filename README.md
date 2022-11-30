@@ -12,9 +12,13 @@ Need to select a reference? Check out the Searchable Reference Selector!
 - Can customize icons, text, filter delay, and more!
 
 ## Usage
-1. Add the widget inside a data view. 
-2. Inside the Data Source tab, select the Enum Attribute you want to have the user select.
+1. Add the widget inside a data view.  
+2. Inside the Data Source tab, select the Enum Attribute you want to have the user select.  
+![Data Source](https://github.com/bsgriggs/mendix-searchable-enumeration-selector/blob/media/datasource.png)   
 3. Run the project and play with the remaining setting to see what you like!
+
+![General](https://github.com/bsgriggs/mendix-searchable-enumeration-selector/blob/media/general.png)  
+![Style](https://github.com/bsgriggs/mendix-searchable-enumeration-selector/blob/media/style.png)  
 
 ## Demo project
 https://widgettesting105-sandbox.mxapps.io/p/searchable-reference-selector
