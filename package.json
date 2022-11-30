@@ -2,7 +2,7 @@
   "name": "searchableenumerationselector",
   "widgetName": "SearchableEnumerationSelector",
   "version": "1.0.0",
-  "description": "Mendix enumeration selector with a searchbar and a clear button",
+  "description": "Mendix enumeration selector with a search bar and a clear button",
   "copyright": "Benjamin Griggs",
   "author": "Benjamin Griggs",
   "engines": {
